@@ -1,0 +1,23 @@
+.main-navbar-container {
+  height: 5rem;
+  box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.232);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 18px;
+}
+.links ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 18px;
+  font-size: 18px;
+}
+.links ul li {
+  list-style-type: none;
+}
+.links ul li a {
+  color: black;
+  text-decoration: none;
+  font-family: 600;
+}
