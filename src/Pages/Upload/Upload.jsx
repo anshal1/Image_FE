@@ -12,6 +12,9 @@ const Upload = () => {
       setPreviewLoading(false);
       setPreview(e.target.result);
     };
+    fileReader.onerror = () => {
+      alert("Something Went Wrong");
+    };
     fileReader.readAsDataURL(file);
   };
   return (
