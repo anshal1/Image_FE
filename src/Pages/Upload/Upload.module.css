@@ -1,0 +1,30 @@
+.main-container {
+  height: calc(100vh - 5rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 12px;
+}
+.upload-container {
+  width: 50%;
+  height: 80%;
+}
+.input-container {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.input-container input {
+  padding: 0px;
+}
+.preview-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.loading {
+  text-align: center;
+}

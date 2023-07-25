@@ -27,3 +27,7 @@ label {
   font-weight: 600;
   font-size: 18px;
 }
+.button-global:disabled {
+  cursor: not-allowed;
+  background-color: rgba(128, 128, 128, 0.4);
+}
