@@ -4,22 +4,14 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
 import Upload from "./Pages/Upload/Upload";
+import Image from "./assets/wallpaperflare.com_wallpaper.jpg";
 function App() {
   return (
     <>
       <Router>
         <Navbar />
         <Routes>
-          <Route
-            path="/"
-            element={
-              <Card
-                img={
-                  "https://cdn.vox-cdn.com/thumbor/KlIlVaMxSyV61YxibUZhaTAcf7k=/0x0:3840x2160/1200x675/filters:focal(1613x773:2227x1387)/cdn.vox-cdn.com/uploads/chorus_image/image/69919398/Pokemon_UNITE___Team_Up._Take_Down.___Screenshot_1.0.png"
-                }
-              />
-            }
-          />
+          <Route path="/" element={<Card img={Image} />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/upload" element={<Upload />} />
