@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./FullScreenImage.module.css";
 const FullScreenImage = ({ image, show, handleClose }) => {
+  useEffect(() => {
+    if (show) document.body.style.overflowY = "hidden";
+  }, [show]);
   return (
     <div className={style[show ? "image-container" : "image-container-hide"]}>
       <div className={style["close-btn"]}>

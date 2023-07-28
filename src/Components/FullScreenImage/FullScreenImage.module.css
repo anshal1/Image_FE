@@ -7,6 +7,7 @@
   pointer-events: all;
   transform: scale(1);
   transition: all 400ms;
+  overflow: hidden;
 }
 .image-container-hide {
   width: 100%;
