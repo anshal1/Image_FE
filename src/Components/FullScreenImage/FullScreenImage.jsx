@@ -3,6 +3,7 @@ import style from "./FullScreenImage.module.css";
 const FullScreenImage = ({ image, show, handleClose }) => {
   useEffect(() => {
     if (show) document.body.style.overflowY = "hidden";
+    if (!show) document.body.style.overflowY = "auto";
   }, [show]);
   return (
     <div className={style[show ? "image-container" : "image-container-hide"]}>
