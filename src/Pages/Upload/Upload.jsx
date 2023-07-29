@@ -25,6 +25,7 @@ const Upload = () => {
   const UploadImage = async () => {
     if (!localStorage.getItem("token")) {
       alert("Please login to continue");
+      navigate("/login");
       return;
     } else {
       await UploadPost(File, async (res, err) => {
