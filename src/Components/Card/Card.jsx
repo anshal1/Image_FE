@@ -35,7 +35,7 @@ const Card = ({ img, like, date, blur_image }) => {
         image={img}
         handleClose={CloseFullScreen}
       />
-      <div className={style["main-card-container"]}>
+      <div className={style["main-card-container"]} data-card="true">
         <span
           className={style["full-screen-button"]}
           role="button"
