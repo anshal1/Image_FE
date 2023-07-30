@@ -35,3 +35,8 @@ label {
   cursor: not-allowed;
   background-color: rgba(128, 128, 128, 0.4);
 }
+.canvas {
+  width: 50%;
+  height: 80%;
+  background-color: red;
+}
