@@ -63,7 +63,7 @@ const Upload = () => {
       <div className={style["main-container"]}>
         <div className={style["input-container"]}>
           <input type="file" accept="image/*" onChange={HandelChange} />
-          <label htmlFor="">
+          {/* <label htmlFor="">
             Compress Image
             <input
               type="checkbox"
@@ -72,7 +72,7 @@ const Upload = () => {
                 setCompressImage(e.target.checked);
               }}
             />
-          </label>
+          </label> */}
         </div>
         <div className={style["upload-container"]}>
           {PreviewLoading ? (
