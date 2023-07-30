@@ -32,7 +32,7 @@ export async function login({ name, email, password }, cb) {
   }
 }
 export async function Posts(cb) {
-  const url = `${domain}/image?limit=10`;
+  const url = `${domain}/image?limit=5`;
   const data = await fetch(url, {
     method: "GET",
     headers: {
