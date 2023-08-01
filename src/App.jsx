@@ -4,11 +4,13 @@ import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
 import Upload from "./Pages/Upload/Upload";
 import Home from "./Pages/Home/Home";
+import Alert from "./Components/Alert/Alert";
 function App() {
   return (
     <>
       <Router>
         <Navbar />
+        <Alert />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
