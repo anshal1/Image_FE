@@ -3,15 +3,19 @@ import { Posts } from "../../Service/User.Service";
 import Card from "../../Components/Card/Card";
 import style from "./Home.module.css";
 import Loader from "../../Components/Loader/Loader";
+import NextPageLoader from "../../Components/Loader/NextPageLoader";
 const Home = () => {
   const [Post, setPosts] = useState([]);
   const [Page, setPage] = useState(1);
   const [isNextPage, setisNextPage] = useState(null);
   const [Loading, setLoading] = useState(true);
+  const [NextPageIs_Loading, setNextPageIs_Loading] = useState(false);
   const FetchPosts = async () => {
+    if (Page > 1) setNextPageIs_Loading(true);
     await Posts(Page, (res, err) => {
       setLoading(false);
       if (res) {
+        setNextPageIs_Loading(false);
         setPosts(Post.concat(res?.Post));
         setisNextPage(res?.NextPage);
       }
@@ -61,6 +65,8 @@ const Home = () => {
           })}
         </div>
       )}
+      <br />
+      {NextPageIs_Loading && <NextPageLoader />}
     </>
   );
 };

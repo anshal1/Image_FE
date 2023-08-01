@@ -4,6 +4,12 @@
   align-items: center;
   justify-content: center;
 }
+.next-main-container {
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .loader {
   width: 4rem;
   height: 4rem;
