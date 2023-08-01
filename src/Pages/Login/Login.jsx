@@ -2,23 +2,27 @@ import React, { useState } from "react";
 import style from "./Login.module.css";
 import { login } from "../../Service/User.Service";
 import { useNavigate } from "react-router-dom";
+import useContextHook from "../../Hooks/useContextHook";
 const Login = () => {
   const navigate = useNavigate();
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
+  const ctx = useContextHook();
   const LoginUser = async () => {
     await login(
       { name: Name, email: Email, password: Password },
       (res, err) => {
         if (res) {
           localStorage.setItem("token", res?.token);
-          alert(res?.message);
+          ctx.setShowAlert(true);
+          ctx.setAlertMessage(res?.message);
           navigate("/");
           return;
         }
         if (err) {
-          alert(err?.error);
+          ctx.setShowAlert(true);
+          ctx.setAlertMessage(err?.error);
         }
       }
     );

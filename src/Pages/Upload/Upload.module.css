@@ -9,6 +9,7 @@
 .upload-container {
   width: 50%;
   height: 80%;
+  position: relative;
 }
 .input-container {
   width: 50%;

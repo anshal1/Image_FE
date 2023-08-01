@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import style from "./Register.module.css";
 import { register_user } from "../../Service/User.Service";
 import { useNavigate } from "react-router-dom";
+import useContextHook from "../../Hooks/useContextHook";
 const Register = () => {
   const navigate = useNavigate();
+  const ctx = useContextHook();
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
@@ -13,12 +15,14 @@ const Register = () => {
       (res, err) => {
         if (res) {
           localStorage.setItem("token", res?.token);
-          alert(res?.message);
+          ctx.setShowAlert(true);
+          ctx.setAlertMessage(res?.message);
           navigate("/");
           return;
         }
         if (err) {
-          alert(err?.error);
+          ctx.setShowAlert(true);
+          ctx.setAlertMessage(err?.error);
         }
       }
     );

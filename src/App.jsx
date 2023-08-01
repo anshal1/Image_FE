@@ -5,11 +5,11 @@ import Register from "./Pages/Register/Register";
 import Upload from "./Pages/Upload/Upload";
 import Home from "./Pages/Home/Home";
 import Alert from "./Components/Alert/Alert";
-import Context from "./Context/Context";
+import State from "./Context/State";
 function App() {
   return (
     <>
-      <Context>
+      <State>
         <Router>
           <Navbar />
           <Alert />
@@ -20,7 +20,7 @@ function App() {
             <Route path="/upload" element={<Upload />} />
           </Routes>
         </Router>
-      </Context>
+      </State>
     </>
   );
 }
