@@ -7,10 +7,11 @@ import useContextHook from "../../Hooks/useContextHook";
 const Upload = () => {
   const navigate = useNavigate();
   const ctx = useContextHook();
-  const [Preview, setPreview] = useState("");
+  const [Preview, setPreview] = useState(null);
   const [PreviewLoading, setPreviewLoading] = useState(false);
   const [file, setFile] = useState(null);
   const [CompressImage, setCompressImage] = useState(false);
+  const [Uploading, setUploading] = useState(false);
   const ConvertToFile = async (image_url) => {
     const url = image_url;
     const data = await fetch(url);
@@ -51,11 +52,15 @@ const Upload = () => {
       navigate("/login");
       return;
     } else {
+      setUploading(true);
+      ctx.setShowAlert(true);
+      ctx.setAlertMessage("Uploading, Please Wait");
       await UploadPost(file, async (res, err) => {
         if (err) return;
         await UploadPostData(res?.data?.display_url, (res, err) => {
           ctx.setShowAlert(true);
           ctx.setAlertMessage("Post Uploaded SuccessFully");
+          setUploading(false);
           navigate("/");
         });
       });
@@ -95,7 +100,7 @@ const Upload = () => {
         <div className={style["buttons"]}>
           <button
             className="button-global"
-            disabled={Preview ? false : true}
+            disabled={Preview && !Uploading ? false : true}
             onClick={UploadImage}
           >
             Share
