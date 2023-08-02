@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import style from "./Navbar.module.css";
+import { useNavigate, Link } from "react-router-dom";
 const Navbar = () => {
+  const navigate = useNavigate();
+  const Logout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+  useEffect(() => {
+    if (!localStorage.getItem("token")) navigate("/login");
+  }, []);
   return (
     <div className={style["main-navbar-container"]}>
       <div className={style["heading"]}>
@@ -9,14 +18,18 @@ const Navbar = () => {
       <div className={style["links"]}>
         <ul>
           <li>
-            <a href="/">Home</a>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <a href="/upload">Upload</a>
+            <Link to="/upload">Upload</Link>
           </li>
-          <li>
-            <a href="#">Profile</a>
-          </li>
+          {localStorage.getItem("token") && (
+            <li>
+              <button className="button-global" onClick={Logout}>
+                Logout
+              </button>
+            </li>
+          )}
         </ul>
       </div>
     </div>
