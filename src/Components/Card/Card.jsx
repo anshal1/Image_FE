@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import style from "./Card.module.css";
 import FullScreenImage from "../FullScreenImage/FullScreenImage";
-const Card = ({ img, like, date, blur_image }) => {
+const Card = ({ img, like, date, blur_image, Like, Dislike, user }) => {
   const [ShowFullScreenImage, setShowFullScreenImage] = useState(false);
   const [ShowMainImage, setShowmainImage] = useState("main-image");
   const [HideBlurImage, setHideBlurImage] = useState("blur-image");
@@ -57,8 +57,12 @@ const Card = ({ img, like, date, blur_image }) => {
           className={style[ShowMainImage]}
           onLoad={ShowImage}
         />
-        <span className={style["like"]} role="button">
-          {like}{" "}
+        <span
+          className={style["like"]}
+          role="button"
+          onClick={like.includes(user?._id) ? Dislike : Like}
+        >
+          {like?.length}{" "}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="16"

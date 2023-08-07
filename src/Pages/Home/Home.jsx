@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Posts } from "../../Service/User.Service";
+import { Posts, dislike, like } from "../../Service/User.Service";
 import Card from "../../Components/Card/Card";
 import style from "./Home.module.css";
 import Loader from "../../Components/Loader/Loader";
 import NextPageLoader from "../../Components/Loader/NextPageLoader";
-const Home = () => {
+const Home = ({ user }) => {
   const [Post, setPosts] = useState([]);
   const [Page, setPage] = useState(1);
   const [isNextPage, setisNextPage] = useState(null);
@@ -41,6 +41,34 @@ const Home = () => {
     );
     obs.observe(AllCard[AllCard.length - 1]);
   };
+  const Like = async (id) => {
+    await like(id, (res, err) => {
+      if (res) {
+        const newPosts = Post.map((each) => {
+          if (each?._id === res?.Post?._id) {
+            return res?.Post;
+          } else {
+            return each;
+          }
+        });
+        setPosts(newPosts);
+      }
+    });
+  };
+  const Dislike = async (id) => {
+    await dislike(id, (res, err) => {
+      if (res) {
+        const newPosts = Post.map((each) => {
+          if (each?._id === res?.Post?._id) {
+            return res?.Post;
+          } else {
+            return each;
+          }
+        });
+        setPosts(newPosts);
+      }
+    });
+  };
   useEffect(() => {
     FetchPosts();
   }, [Page]);
@@ -56,10 +84,18 @@ const Home = () => {
           {Post?.map((each, idx) => {
             return (
               <Card
+                key={idx}
                 img={each?.image}
-                like={each?.likes?.length}
+                like={each?.likes}
                 date={each?.date}
                 blur_image={each?.preview_image}
+                Like={() => {
+                  Like(each?._id);
+                }}
+                Dislike={() => {
+                  Dislike(each?._id);
+                }}
+                user={user}
               />
             );
           })}

@@ -6,7 +6,20 @@ import Upload from "./Pages/Upload/Upload";
 import Home from "./Pages/Home/Home";
 import Alert from "./Components/Alert/Alert";
 import State from "./Context/State";
+import { useEffect, useState } from "react";
+import { userData } from "./Service/User.Service";
 function App() {
+  const [User, setUser] = useState(null);
+  const Fetch = async () => {
+    await userData((res, err) => {
+      if (res?.success) {
+        setUser(res?.user);
+      }
+    });
+  };
+  useEffect(() => {
+    Fetch();
+  }, []);
   return (
     <>
       <State>
@@ -14,7 +27,7 @@ function App() {
           <Navbar />
           <Alert />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home user={User} />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/upload" element={<Upload />} />

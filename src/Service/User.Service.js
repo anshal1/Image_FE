@@ -1,4 +1,20 @@
 const domain = "http://localhost:5000";
+export async function userData(cb) {
+  const url = `${domain}/user`;
+  const data = await fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-type": "application/json",
+      token: localStorage.getItem("token"),
+    },
+  });
+  const res = await data.json();
+  if (res?.success) {
+    return cb(res, null);
+  } else {
+    return cb(null, res);
+  }
+}
 export async function register_user({ name, email, password }, cb) {
   const url = `${domain}/user/register`;
   const data = await fetch(url, {
@@ -71,6 +87,38 @@ export async function UploadPostData(image_url, cb) {
       token: localStorage.getItem("token"),
     },
     body: JSON.stringify({ image_url }),
+  });
+  const res = await data.json();
+  if (res?.success) {
+    return cb(res, null);
+  } else {
+    return cb(null, res);
+  }
+}
+export async function like(id, cb) {
+  const url = `${domain}/image/like/${id}`;
+  const data = await fetch(url, {
+    method: "PUT",
+    headers: {
+      "Content-type": "application/json",
+      token: localStorage.getItem("token"),
+    },
+  });
+  const res = await data.json();
+  if (res?.success) {
+    return cb(res, null);
+  } else {
+    return cb(null, res);
+  }
+}
+export async function dislike(id, cb) {
+  const url = `${domain}/image/dislike/${id}`;
+  const data = await fetch(url, {
+    method: "PUT",
+    headers: {
+      "Content-type": "application/json",
+      token: localStorage.getItem("token"),
+    },
   });
   const res = await data.json();
   if (res?.success) {
